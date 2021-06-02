@@ -11,7 +11,7 @@ var mango1,mango2,mango3,mango4,mango5,mango6,mango7,mango8,mango9,mango10,mango
 var world,boy;
 
 //Declare launcherObject and launchForce variable here
-var Roca;
+var Roca,Hand;
 var launchForce = 100;
 
 
@@ -24,7 +24,8 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	stoneObj=new stone(235,420,30); 
+	stoneObj = new stone(235,420,30); 
+	stoneObj2 = new stone2(235,420,30); 
 
 	mango1=new mango(1100,100,30);
   mango2=new mango(1170,130,30);
@@ -41,6 +42,10 @@ function setup() {
 
 	treeObj=new tree(1050,580);
 	groundObject=new ground(width/2,600,width,20);
+
+  Roca = new Launcher(stoneObj2.body,{x: 250,y: 100},stoneObj.body,{x: 250,y: 80});
+
+
   //create launcherObject here
 
 
@@ -71,11 +76,14 @@ function draw() {
   mango12.display();
 
   stoneObj.display();
+  stoneObj2.display();
+
   groundObject.display();
   // display launcher object here
-    
-  Roca = new Pebble(stoneObj.body,{x:235, y:420});
   Roca.display();
+    
+ // stoneObj = new Pebble(stoneObj.body,{x:235, y:420});
+  //stoneObj.display();
 
 
   detectollision(stoneObj,mango1);
@@ -94,15 +102,6 @@ function draw() {
 }//function draw bracket
 
 //create mouseDragged function here
-function mouseDragged(){
-  Matter.Body.setPosition(boy.body,{x: mouseX,y:mouseY});
-}
-
-//create mouseReleased function here
-function mouseReleased(){
-  Pebble.fly();
-}
-
 
 //create keyPressed function here
 
